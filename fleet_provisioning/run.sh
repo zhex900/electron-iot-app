@@ -2,7 +2,7 @@
 ENDPOINT=$(aws iot describe-endpoint --endpoint-type iot:Data-ATS | jq -r '.endpointAddress')
 
 node dist/index.js \
-        --endpoint $ENDPOINT \
+        --endpoint "$ENDPOINT" \
         --ca_file ../infra/AmazonRootCA1.pem \
         --cert ../infra/claim.cert.pem \
         --key ../infra/claim.private.key \
