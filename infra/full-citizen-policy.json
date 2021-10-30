@@ -1,0 +1,44 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish"
+      ],
+      "Resource": [
+        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topic/$aws/things/${iot:ClientId}/shadow/update"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topic/$aws/certificates/create/*",
+        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topic/$aws/provisioning-templates/fleet-provisioning-template/provision/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topicfilter/$aws/certificates/create/*",
+        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topicfilter/$aws/provisioning-templates/fleet-provisioning-template/provision/*"
+      ]
+    }
+  ]
+}
