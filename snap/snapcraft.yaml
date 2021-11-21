@@ -1,0 +1,56 @@
+name: electron-kiosk
+version: 1.0.0
+summary: Digital signage app
+description: Digital signage app
+base: core18
+confinement: strict
+grade: devel
+compression: lzo
+
+apps:
+  pam-app:
+    daemon: simple
+    stop-timeout: 1m
+    extensions: [gnome-3-28]
+    restart-condition: always
+    command: snap/command-chain/desktop-launch xwayland-kiosk-launch $SNAP/usr/bin/electron-launcher
+    plugs:
+      - network
+      - network-bind
+      - opengl
+      - wayland
+
+layout:
+  /usr/share/fonts:
+    bind: $SNAP/usr/share/fonts
+
+environment:
+  XWAYLAND_FULLSCREEN_WINDOW_HINT: window_role="browser-window"
+
+parts:
+  pam-app-source:
+    plugin: nil
+    source: out
+    override-build: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/app
+      cp -R app-linux-x64/* $SNAPCRAFT_PART_INSTALL/app
+    stage-packages:
+      - libnspr4
+      - libasound2
+      - libgconf-2-4
+      - libnss3
+      - libx11-xcb1
+      - libxss1
+      - libxtst6
+
+  xwayland-kiosk-helper:
+    plugin: cmake
+    source: https://github.com/MirServer/xwayland-kiosk-helper.git
+    build-packages: [build-essential]
+    stage-packages: [xwayland, i3, libegl1-mesa, libgl1-mesa-glx]
+
+  electron-launcher:
+    plugin: dump
+    source: snap-electron-launcher/
+    organize:
+      electron-launcher.sh: usr/bin/electron-launcher

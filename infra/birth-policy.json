@@ -16,7 +16,7 @@
         "iot:Publish"
       ],
       "Resource": [
-        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topic/$aws/things/${iot:ClientId}/shadow/update"
+        "arn:aws:iot:ap-southeast-2:611908202515:topic/$aws/things/${iot:ClientId}/shadow/update"
       ]
     },
     {
@@ -26,8 +26,8 @@
         "iot:Receive"
       ],
       "Resource": [
-        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topic/$aws/certificates/create/*",
-        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topic/$aws/provisioning-templates/FLEET_PROVISIONING_TEMPLATE/provision/*"
+        "arn:aws:iot:ap-southeast-2:611908202515:topic/$aws/certificates/create/*",
+        "arn:aws:iot:ap-southeast-2:611908202515:topic/$aws/provisioning-templates/fleet-provisioning-template/provision/*"
       ]
     },
     {
@@ -36,8 +36,8 @@
         "iot:Subscribe"
       ],
       "Resource": [
-        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topicfilter/$aws/certificates/create/*",
-        "arn:aws:iot:AWS_REGION:AWS_ACCOUNT:topicfilter/$aws/provisioning-templates/fleet-provisioning-template/provision/*"
+        "arn:aws:iot:ap-southeast-2:611908202515:topicfilter/$aws/certificates/create/*",
+        "arn:aws:iot:ap-southeast-2:611908202515:topicfilter/$aws/provisioning-templates/fleet-provisioning-template/provision/*"
       ]
     }
   ]

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-APP=electron-iot-app
-AWS_ACCOUNT=
-AWS_REGION=
+AWS_ACCOUNT=611908202515
+AWS_REGION=ap-southeast-2
 FLEET_PROVISIONING_TEMPLATE=fleet-provisioning-template
 FLEET_PROVISIONING_ROLE=role-fleet-provisioning-template
 
@@ -40,7 +39,7 @@ aws iot create-provisioning-template \
 CERTIFICATE_ARN=$(aws iot create-keys-and-certificate --set-as-active \
   --certificate-pem-outfile "claim.cert.pem" \
   --public-key-outfile "claim.public.key" \
-  --private-key-outfile "claim.private.key" | jq '.certificateArn')
+  --private-key-outfile "claim.private.key" | jq -r '.certificateArn')
 
 aws iot attach-policy --policy-name birth-policy --target "$CERTIFICATE_ARN"
 
